@@ -11,7 +11,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-card *ngFor="let item of items" button>
+    <ion-card class="welcome-card" *ngFor="let item of items" button (click)="onClickCard(item)">
       <img src="/assets/shapes.svg" alt="" />
 
       <ion-card-header>

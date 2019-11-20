@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>
+      Detail Page
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button class="back-button" (click)="onClickGoBack()"><ion-icon name="arrow-back"></ion-icon> Back</ion-button>
+
+  <ion-card class="welcome-card">
+    <img src="/assets/shapes.svg" alt="" />
+
+    <ion-card-header>
+      <ion-card-subtitle>Episode Number: {{item.episode_id}}</ion-card-subtitle>
+      <ion-card-title>{{item.title}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>
+        {{item.opening_crawl}}
+      </p>
+      <br />
+      <p>Producer: {{item.producer}}</p>
+      <p>Director: {{item.director}}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
