@@ -38,7 +38,7 @@ export class AppComponent {
     },
     {
       title: 'Log Out',
-      url: '/list',
+      url: '/signin',
       icon: 'log-out'
     }
   ];
