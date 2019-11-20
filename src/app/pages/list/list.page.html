@@ -4,23 +4,23 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      List
+      List of Star Wars Films
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-card class="welcome-card" *ngFor="let item of items" button (click)="onClickCard(item)">
+    <ion-card class="welcome-card" *ngFor="let film of films" button (click)="onClickCard(film)">
       <img src="/assets/shapes.svg" alt="" />
 
       <ion-card-header>
-        <ion-card-title>{{item.title}}</ion-card-title>
+        <ion-card-title>{{film.title}}</ion-card-title>
       </ion-card-header>
 
       <ion-card-content>
         <p>
-          {{item.director}}
+          {{film.director}}
         </p>
       </ion-card-content>
     </ion-card>

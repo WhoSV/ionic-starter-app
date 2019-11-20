@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
+import { SWAPIService } from '../../services/swapi.service';
 import { DetailPage } from './detail.page';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { DetailPage } from './detail.page';
       }
     ])
   ],
-  declarations: [DetailPage]
+  declarations: [DetailPage],
+  providers: [SWAPIService]
 })
 export class DetailPageModule {}

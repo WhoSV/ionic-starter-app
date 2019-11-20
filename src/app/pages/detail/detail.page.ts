@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { LoadingController } from '@ionic/angular';
+
+import { SWAPIService } from '../../services/swapi.service';
+import { Film } from '../../services/models/film.model';
 
 @Component({
   selector: 'app-detail',
@@ -9,15 +11,15 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['detail.page.scss']
 })
 export class DetailPage {
-  public item = {
+  public film: Film = {
     title: '',
-    director: '',
     producer: '',
+    director: '',
     episode_id: '',
     opening_crawl: ''
   };
 
-  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, public loadingController: LoadingController) {
+  constructor(private router: Router, private route: ActivatedRoute, public loadingController: LoadingController, private swapiService: SWAPIService) {
     loadingController
       .create({
         message: 'Please wait...'
@@ -25,14 +27,14 @@ export class DetailPage {
       .then(loading => loading.present());
 
     this.route.params.subscribe((params: any) => {
-      this.http.get(params['url']).subscribe((response: any) => {
+      this.swapiService.getFilm(params['url']).subscribe((response: any) => {
         loadingController.dismiss();
 
-        (this.item.director = response.director),
-          (this.item.title = response.title),
-          (this.item.producer = response.producer),
-          (this.item.episode_id = response.episode_id),
-          (this.item.opening_crawl = response.opening_crawl);
+        (this.film.title = response.title),
+          (this.film.producer = response.producer),
+          (this.film.director = response.director),
+          (this.film.episode_id = response.episode_id),
+          (this.film.opening_crawl = response.opening_crawl);
       });
     });
   }

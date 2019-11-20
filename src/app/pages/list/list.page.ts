@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { LoadingController } from '@ionic/angular';
+
+import { SWAPIService } from '../../services/swapi.service';
+import { Films } from '../../services/models/films.model';
 
 @Component({
   selector: 'app-list',
@@ -9,20 +11,20 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['list.page.scss']
 })
 export class ListPage {
-  public items: Array<{ title: string; director: string; url: string }> = [];
+  public films: Films[] = [];
 
-  constructor(private router: Router, private http: HttpClient, public loadingController: LoadingController) {
+  constructor(private router: Router, public loadingController: LoadingController, private swapiService: SWAPIService) {
     loadingController
       .create({
         message: 'Please wait...'
       })
       .then(loading => loading.present());
 
-    this.http.get('https://swapi.co/api/films/').subscribe((response: any) => {
+    this.swapiService.getAllFilms().subscribe((response: any) => {
       loadingController.dismiss();
-
       response.results.map((item: any) => {
-        this.items.push({
+        this.films.push({
+          id: item.id,
           title: item.title,
           director: item.director,
           url: item.url
@@ -31,7 +33,7 @@ export class ListPage {
     });
   }
 
-  onClickCard(item: any) {
-    this.router.navigate(['detail', { url: item.url }]);
+  onClickCard(film: any) {
+    this.router.navigate(['detail', { url: film.url }]);
   }
 }

@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
+import { SWAPIService } from '../../services/swapi.service';
 import { ListPage } from './list.page';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { ListPage } from './list.page';
       }
     ])
   ],
-  declarations: [ListPage]
+  declarations: [ListPage],
+  providers: [SWAPIService]
 })
 export class ListPageModule {}
