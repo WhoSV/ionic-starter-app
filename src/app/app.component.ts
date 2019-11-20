@@ -12,22 +12,38 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 export class AppComponent {
   public appPages = [
     {
-      title: 'Home',
-      url: '/home',
-      icon: 'home'
+      title: 'Dashboard',
+      url: '/list',
+      icon: 'logo-npm'
     },
     {
-      title: 'List',
+      title: 'Photos',
       url: '/list',
-      icon: 'list'
+      icon: 'logo-nodejs'
+    },
+    {
+      title: 'Available Missions',
+      url: '/list',
+      icon: 'logo-sass'
+    },
+    {
+      title: 'My Missions',
+      url: '/list',
+      icon: 'logo-playstation'
+    },
+    {
+      title: 'Chat',
+      url: '/list',
+      icon: 'logo-javascript'
+    },
+    {
+      title: 'Log Out',
+      url: '/list',
+      icon: 'log-out'
     }
   ];
 
-  constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar
-  ) {
+  constructor(private platform: Platform, private splashScreen: SplashScreen, private statusBar: StatusBar) {
     this.initializeApp();
   }
 
