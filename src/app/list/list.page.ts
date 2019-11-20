@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-list',
@@ -7,14 +8,18 @@ import { Router } from '@angular/router';
   styleUrls: ['list.page.scss']
 })
 export class ListPage {
-  public items: Array<{ title: string; note: string }> = [];
+  public items: Array<{ title: string; director: string }> = [];
 
-  constructor(private router: Router) {
-    for (let i = 1; i < 100; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i
-      });
-    }
+  constructor(private router: Router, private http: HttpClient) {
+    this.http.get('https://swapi.co/api/films/').subscribe((response: any) => {
+      response
+        ? response.results.map((item: any) => {
+            this.items.push({
+              title: item.title,
+              director: item.director
+            });
+          })
+        : null;
+    });
   }
 }
